@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>独立创作者成长仪表盘</title>
+    <title>Winston hao｜创作者成长仪表盘</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Calm Harmony -->
-    <!-- Application Structure Plan: 我设计了一个基于标签页的仪表盘结构。用户可以通过顶部导航在“创作能力”、“人际连接”、“身心健康”和“未来规划”四个核心模块间切换。这种结构能帮助用户将宏大的计划分解成可管理的、专注的部分，避免信息过载。每个模块内部都设计了交互元素（如清单、进度条、图表），将静态的计划转化为一个动态的、可追踪的行动工具，旨在通过提供即时反馈和成就感来对抗用户的孤独感和迷茫感，从而有效地支持其个人成长。 -->
-    <!-- Visualization & Content Choices: 1. **创作能力/人际连接**: (目标: 组织与告知) 使用卡片和可勾选的清单来呈现行动点。交互: 用户勾选后，会实时更新顶部的进度条。理由: 清单提供了清晰、可执行的步骤，而进度条则提供了强烈的视觉激励和成就感。 2. **身心健康**: (目标: 比较与改变) 使用一个雷达图来可视化不同健康维度的平衡状态。交互: 用户通过每日清单记录习惯，图表会根据数据动态变化。理由: 雷达图非常适合直观地展示多个维度的平衡与否，帮助用户一目了然地发现生活中的短板。 3. **未来规划**: (目标: 组织与告知) 使用可折叠的手风琴式卡片来展示分步计划。交互: 用户可以点击展开每个步骤，查看详细信息。理由: 这种方式可以在保持界面整洁的同时，引导用户按部就班地思考和规划长期目标。 -->
+    <!-- Application Structure Plan: 我设计了一个基于标签页的仪表盘结构。用户可以通过顶部导航在“创作能力”、“人际连接”、“身心健康”和“未来发展与规划”四个核心模块间切换。这种结构能帮助用户将宏大的计划分解成可管理的、专注的部分，避免信息过载。每个模块内部都设计了交互元素（如清单、进度条、图表），将静态的计划转化为一个动态的、可追踪的行动工具，旨在通过提供即时反馈和成就感来对抗用户的孤独感和迷茫感，从而有效地支持其个人成长。新增了“今日反思”区域，鼓励用户每日进行自我觉察和记录，并通过本地存储实现数据持久化。 -->
+    <!-- Visualization & Content Choices: 1. **创作能力/人际连接**: (目标: 组织与告知) 使用卡片和可勾选的清单来呈现行动点。交互: 用户勾选后，会实时更新顶部的进度条。理由: 清单提供了清晰、可执行的步骤，而进度条则提供了强烈的视觉激励和成就感。 2. **身心健康**: (目标: 比较与改变) 使用一个雷达图来可视化不同健康维度的平衡状态。交互: 用户通过每日清单记录习惯，图表会根据数据动态变化。理由: 雷达图非常适合直观地展示多个维度的平衡与否，帮助用户一目了然地发现生活中的短板。 3. **未来发展与规划**: (目标: 组织与告知) 使用可折叠的手风琴式卡片来展示分步计划。交互: 用户可以点击展开每个步骤，查看详细信息。理由: 这种方式可以在保持界面整洁的同时，引导用户按部就班地思考和规划长期目标。 -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
@@ -54,28 +54,28 @@
         
         <header class="text-center mb-8">
             <h1 class="text-3xl md:text-4xl font-bold text-stone-900">独立创作者成长仪表盘</h1>
-            <p class="mt-2 text-stone-600">将努力化为行动，一步步看见自己的成长。</p>
+            <p class="mt-2 text-stone-600">将努力化为行动，一步步看见自己的成长与反思。</p>
         </header>
 
         <nav class="flex justify-center border-b border-stone-300 mb-8">
             <button data-tab="creative" class="nav-link active py-3 px-4 md:px-6 text-stone-600 font-semibold">🚀 创作能力</button>
             <button data-tab="connection" class="nav-link py-3 px-4 md:px-6 text-stone-600 font-semibold">🤝 人际连接</button>
             <button data-tab="health" class="nav-link py-3 px-4 md:px-6 text-stone-600 font-semibold">❤️ 身心健康</button>
-            <button data-tab="future" class="nav-link py-3 px-4 md:px-6 text-stone-600 font-semibold">🌏 未来规划</button>
+            <button data-tab="future" class="nav-link py-3 px-4 md:px-6 text-stone-600 font-semibold">🌏 未来发展与规划</button>
         </nav>
 
         <main>
             <!-- Section 1: Creative Ability -->
             <section id="creative" class="tab-content space-y-6">
                 <div class="p-4 bg-white/50 rounded-lg shadow-sm">
-                    <p class="text-stone-700 leading-relaxed">这里是你的创作核心区。提升创作能力是建立自信和存在感的基石。本模块将帮助你系统地设定目标、学习精进并优化流程。每完成一项，你都在为自己的创作大厦添砖加瓦。</p>
+                    <p class="text-stone-700 leading-relaxed">这里是你的内容和视频创作核心区。提升创作能力是建立个人影响力和存在感的基石。本模块将帮助你系统地设定目标、学习精进并优化流程，从短期产出到中期作品集打造，再到长期个人品牌建设，每完成一项，你都在为自己的创作大厦添砖加瓦。</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-2 text-stone-800">1.1 明确创作目标</h3>
+                    <h3 class="text-xl font-bold mb-2 text-stone-800">1.1 明确创作目标 (短期行动)</h3>
                     <ul class="space-y-2 task-list" data-section="creative">
-                        <li><input type="checkbox" id="c1-1" class="task-item"><label for="c1-1" class="ml-2 text-stone-700 cursor-pointer">具体化：设定短期（周/月）和长期（季度/年）可量化的目标</label></li>
-                        <li><input type="checkbox" id="c1-2" class="task-item"><label for="c1-2" class="ml-2 text-stone-700 cursor-pointer">可衡量：例如，每周完成一篇短文，每月完成一个插画系列</label></li>
-                        <li><input type="checkbox" id="c1-3" class="task-item"><label for="c1-3" class="ml-2 text-stone-700 cursor-pointer">挑战性：尝试新风格、新工具、新题材</label></li>
+                        <li><input type="checkbox" id="c1-1" class="task-item"><label for="c1-1" class="ml-2 text-stone-700 cursor-pointer">每日：完成200字文案/脚本草稿 / 拍摄10分钟素材 / 剪辑1段视频片段</label></li>
+                        <li><input type="checkbox" id="c1-2" class="task-item"><label for="c1-2" class="ml-2 text-stone-700 cursor-pointer">每周：完成1个视频脚本 / 产出1个短视频成品 / 学习1个新的剪辑技巧</label></li>
+                        <li><input type="checkbox" id="c1-3" class="task-item"><label for="c1-3" class="ml-2 text-stone-700 cursor-pointer">每月：规划下月内容主题 / 完成1个长视频或系列内容 / 分析1个热门视频的成功要素</label></li>
                     </ul>
                     <div class="mt-4">
                         <div class="w-full bg-stone-200 rounded-full h-2.5">
@@ -84,11 +84,12 @@
                     </div>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-2 text-stone-800">1.2 持续学习与精进</h3>
+                    <h3 class="text-xl font-bold mb-2 text-stone-800">1.2 持续学习与精进 (短期至中期)</h3>
                     <ul class="space-y-2 task-list" data-section="creative">
-                        <li><input type="checkbox" id="c2-1" class="task-item"><label for="c2-1" class="ml-2 text-stone-700 cursor-pointer">线上课程/教程：系统学习新技能或深化现有技能</label></li>
-                        <li><input type="checkbox" id="c2-2" class="task-item"><label for="c2-2" class="ml-2 text-stone-700 cursor-pointer">阅读与研究：分析优秀作品，汲取灵感和方法</label></li>
-                        <li><input type="checkbox" id="c2-3" class="task-item"><label for="c2-3" class="ml-2 text-stone-700 cursor-pointer">刻意练习：针对薄弱环节进行专项训练</label></li>
+                        <li><input type="checkbox" id="c2-1" class="task-item"><label for="c2-1" class="ml-2 text-stone-700 cursor-pointer">每日：阅读行业报告/观看教程15分钟（如：视频拍摄、剪辑、文案技巧）</label></li>
+                        <li><input type="checkbox" id="c2-2" class="task-item"><label for="c2-2" class="ml-2 text-stone-700 cursor-pointer">每周：分析一个成功创作者的内容策略 / 针对视频表现弱项进行刻意练习（如：运镜、标题、封面）</label></li>
+                        <li><input type="checkbox" id="c2-3" class="task-item"><label for="c2-3" class="ml-2 text-stone-700 cursor-pointer">每月：整理并更新视频作品集/内容库 / 寻求1位信任朋友或同行的反馈</label></li>
+                        <li><input type="checkbox" id="c2-4" class="task-item"><label for="c2-4" class="ml-2 text-stone-700 cursor-pointer">尝试新形式：例如，尝试直播互动，制作播客，或撰写深度文章</label></li>
                     </ul>
                     <div class="mt-4">
                         <div class="w-full bg-stone-200 rounded-full h-2.5">
@@ -97,11 +98,12 @@
                     </div>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-2 text-stone-800">1.3 优化创作流程</h3>
+                    <h3 class="text-xl font-bold mb-2 text-stone-800">1.3 优化创作流程与品牌建设 (短期至长期)</h3>
                     <ul class="space-y-2 task-list" data-section="creative">
-                        <li><input type="checkbox" id="c3-1" class="task-item"><label for="c3-1" class="ml-2 text-stone-700 cursor-pointer">固定创作时间：养成规律的创作习惯</label></li>
-                        <li><input type="checkbox" id="c3-2" class="task-item"><label for="c3-2" class="ml-2 text-stone-700 cursor-pointer">减少干扰：关闭通知，创造专注环境</label></li>
-                        <li><input type="checkbox" id="c3-3" class="task-item"><label for="c3-3" class="ml-2 text-stone-700 cursor-pointer">定期休息：使用番茄工作法等，劳逸结合</label></li>
+                        <li><input type="checkbox" id="c3-1" class="task-item"><label for="c3-1" class="ml-2 text-stone-700 cursor-pointer">每日：固定创作时间段（例如：上午9-11点） / 关闭社交媒体通知1小时</label></li>
+                        <li><input type="checkbox" id="c3-2" class="task-item"><label for="c3-2" class="ml-2 text-stone-700 cursor-pointer">每周：回顾内容表现数据（播放量、互动率） / 调整创作计划</label></li>
+                        <li><input type="checkbox" id="c3-3" class="task-item"><label for="c3-3" class="ml-2 text-stone-700 cursor-pointer">每月：发布1-2条关于创作幕后的动态 / 研究平台算法和用户喜好</label></li>
+                        <li><input type="checkbox" id="c3-4" class="task-item"><label for="c3-4" class="ml-2 text-stone-700 cursor-pointer">长期：持续输出高质量、有个人特色的内容，形成个人品牌和影响力</label></li>
                     </ul>
                     <div class="mt-4">
                         <div class="w-full bg-stone-200 rounded-full h-2.5">
@@ -109,20 +111,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-2 text-stone-800">今日反思</h3>
+                    <textarea id="creative-reflection" class="w-full p-3 border border-stone-300 rounded-lg focus:ring-amber-500 focus:border-amber-500" rows="4" placeholder="今天在内容/视频创作方面，我有什么新的体会？遇到了什么挑战？取得了哪些小进步？"></textarea>
+                </div>
             </section>
 
             <!-- Section 2: Connection -->
             <section id="connection" class="tab-content space-y-6 hidden">
                 <div class="p-4 bg-white/50 rounded-lg shadow-sm">
-                    <p class="text-stone-700 leading-relaxed">孤独感源于连接的缺失。本模块旨在鼓励你主动出击，通过分享和交流，打破信息孤岛，建立有意义的人际连接。记住，每一次互动都是在向世界宣告你的存在。</p>
+                    <p class="text-stone-700 leading-relaxed">孤独感源于连接的缺失。本模块旨在鼓励你主动出击，通过分享和交流，打破信息孤岛，建立有意义的人际连接。从线上主动互动到线下小规模尝试，再到深度人际网络的建立，每一次互动都是在向世界宣告你的存在。</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-2 text-stone-800">2.1 主动分享与展示</h3>
+                    <h3 class="text-xl font-bold mb-2 text-stone-800">2.1 线上主动分享与社群互动 (短期至中期)</h3>
                     <ul class="space-y-2 task-list" data-section="connection">
-                        <li><input type="checkbox" id="cn1-1" class="task-item"><label for="cn1-1" class="ml-2 text-stone-700 cursor-pointer">选择合适平台：根据作品类型选择（小红书、微博、知乎、B站等）</label></li>
-                        <li><input type="checkbox" id="cn1-2" class="task-item"><label for="cn1-2" class="ml-2 text-stone-700 cursor-pointer">持续输出：分享作品、创作过程、灵感、思考</label></li>
-                        <li><input type="checkbox" id="cn1-3" class="task-item"><label for="cn1-3" class="ml-2 text-stone-700 cursor-pointer">积极互动：回复评论，点赞，与同行交流</label></li>
-                        <li><input type="checkbox" id="cn1-4" class="task-item"><label for="cn1-4" class="ml-2 text-stone-700 cursor-pointer">目标：建立非功利性的分享与交流</label></li>
+                        <li><input type="checkbox" id="cn1-1" class="task-item"><label for="cn1-1" class="ml-2 text-stone-700 cursor-pointer">每日：在社交平台点赞/评论3-5个内容 / 在社群中发言1次 / 回复评论区留言5条</label></li>
+                        <li><input type="checkbox" id="cn1-2" class="task-item"><label for="cn1-2" class="ml-2 text-stone-700 cursor-pointer">每周：发布1-2条创作幕后或生活分享动态 / 私信1位同行进行简单交流 / 参与1场线上直播互动</label></li>
+                        <li><input type="checkbox" id="cn1-3" class="task-item"><label for="cn1-3" class="ml-2 text-stone-700 cursor-pointer">每月：参与1个线上协作项目 / 参加1场线上分享会 / 策划1次社群互动话题</label></li>
+                        <li><input type="checkbox" id="cn1-4" class="task-item"><label for="cn1-4" class="ml-2 text-stone-700 cursor-pointer">目标：建立非功利性的分享与交流，提升内容影响力</label></li>
                     </ul>
                      <div class="mt-4">
                         <div class="w-full bg-stone-200 rounded-full h-2.5">
@@ -131,11 +137,13 @@
                     </div>
                 </div>
                  <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-2 text-stone-800">2.2 融入线上社群</h3>
+                    <h3 class="text-xl font-bold mb-2 text-stone-800">2.2 线下探索与深度网络 (中期至长期)</h3>
                     <ul class="space-y-2 task-list" data-section="connection">
-                        <li><input type="checkbox" id="cn2-1" class="task-item"><label for="cn2-1" class="ml-2 text-stone-700 cursor-pointer">寻找同好群组：加入创作领域相关微信群、QQ群、豆瓣小组</label></li>
-                        <li><input type="checkbox" id="cn2-2" class="task-item"><label for="cn2-2" class="ml-2 text-stone-700 cursor-pointer">积极参与讨论：主动发言，分享观点，提出问题，帮助他人</label></li>
-                        <li><input type="checkbox" id="cn2-3" class="task-item"><label for="cn2-3" class="ml-2 text-stone-700 cursor-pointer">线上协作：参与非商业项目，体验团队合作乐趣</label></li>
+                        <li><input type="checkbox" id="cn2-1" class="task-item"><label for="cn2-1" class="ml-2 text-stone-700 cursor-pointer">每月：尝试参加1次小规模线下活动（如创作者沙龙、行业交流会）</label></li>
+                        <li><input type="checkbox" id="cn2-2" class="task-item"><label for="cn2-2" class="ml-2 text-stone-700 cursor-pointer">每季度：主动发起1次与投缘同行的深度交流（线上或线下）</label></li>
+                        <li><input type="checkbox" id="cn2-3" class="task-item"><label for="cn2-3" class="ml-2 text-stone-700 cursor-pointer">长期：深耕1-2个高质量社群，建立更深连接</label></li>
+                        <li><input type="checkbox" id="cn2-4" class="task-item"><label for="cn2-4" class="ml-2 text-stone-700 cursor-pointer">长期：寻找经验丰富的导师或潜在合作者，探索跨平台合作机会</label></li>
+                        <li><input type="checkbox" id="cn2-5" class="task-item"><label for="cn2-5" class="ml-2 text-stone-700 cursor-pointer">长期：保持与已建立连接的朋友和同行的定期交流</label></li>
                     </ul>
                      <div class="mt-4">
                         <div class="w-full bg-stone-200 rounded-full h-2.5">
@@ -143,22 +151,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-2 text-stone-800">今日反思</h3>
+                    <textarea id="connection-reflection" class="w-full p-3 border border-stone-300 rounded-lg focus:ring-teal-500 focus:border-teal-500" rows="4" placeholder="今天在人际连接方面，我有什么新的尝试？感受如何？有哪些可以改进的地方？"></textarea>
+                </div>
             </section>
 
             <!-- Section 3: Health -->
             <section id="health" class="tab-content space-y-6 hidden">
                 <div class="p-4 bg-white/50 rounded-lg shadow-sm">
-                    <p class="text-stone-700 leading-relaxed">身心健康是所有努力的基石。一个健康的身体和稳定的情绪能让你更有能量去创作和社交。本模块通过一个直观的雷达图，帮助你关注并平衡生活的各个方面。</p>
+                    <p class="text-stone-700 leading-relaxed">身心健康是所有努力的基石。一个健康的身体和稳定的情绪能让你更有能量去创作和社交。本模块将帮助你通过每日打卡和可视化图表，关注并平衡生活的各个方面，确保你有持续努力的能量。每日的反思将帮助你更好地觉察身心状态。</p>
                 </div>
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="bg-white p-6 rounded-lg shadow-md">
                         <h3 class="text-xl font-bold mb-4 text-stone-800">每日健康清单</h3>
                         <ul class="space-y-3 task-list" data-section="health">
                             <li><input type="checkbox" id="h1" class="task-item" data-category="作息"><label for="h1" class="ml-2 text-stone-700 cursor-pointer">规律作息：按时起床/睡觉</label></li>
-                            <li><input type="checkbox" id="h2" class="task-item" data-category="运动"><label for="h2" class="ml-2 text-stone-700 cursor-pointer">适度运动：散步或拉伸20分钟</label></li>
-                            <li><input type="checkbox" id="h3" class="task-item" data-category="饮食"><label for="h3" class="ml-2 text-stone-700 cursor-pointer">健康饮食：三餐规律，营养均衡</label></li>
-                            <li><input type="checkbox" id="h4" class="task-item" data-category="放松"><label for="h4" class="ml-2 text-stone-700 cursor-pointer">留出放松时间：听音乐、看电影等</label></li>
-                            <li><input type="checkbox" id="h5" class="task-item" data-category="记录"><label for="h5" class="ml-2 text-stone-700 cursor-pointer">记录与排解：写日记或与人倾诉</label></li>
+                            <li><input type="checkbox" id="h2" class="task-item" data-category="运动"><label for="h2" class="ml-2 text-stone-700 cursor-pointer">适度运动：散步或拉伸20分钟 / 尝试“微出门”</label></li>
+                            <li><input type="checkbox" id="h3" class="task-item" data-category="饮食"><label for="h3" class="ml-2 text-stone-700 cursor-pointer">健康饮食：三餐规律，营养均衡 / 尝试清淡小食</label></li>
+                            <li><input type="checkbox" id="h4" class="task-item" data-category="放松"><label for="h4" class="ml-2 text-stone-700 cursor-pointer">留出放松时间：听音乐、看电影、冥想或发呆</label></li>
+                            <li><input type="checkbox" id="h5" class="task-item" data-category="记录"><label for="h5" class="ml-2 text-stone-700 cursor-pointer">记录与排解：写日记或与信任的人倾诉</label></li>
                         </ul>
                         <button id="resetHealth" class="mt-6 w-full bg-rose-500 text-white py-2 rounded-lg hover:bg-rose-600 transition">重置今日清单</button>
                     </div>
@@ -169,51 +181,88 @@
                         </div>
                     </div>
                 </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-2 text-stone-800">今日反思</h3>
+                    <textarea id="health-reflection" class="w-full p-3 border border-stone-300 rounded-lg focus:ring-rose-500 focus:border-rose-500" rows="4" placeholder="今天我的身心状态如何？哪些方面做得好？哪些方面需要更多关注？"></textarea>
+                </div>
             </section>
 
             <!-- Section 4: Future -->
             <section id="future" class="tab-content space-y-6 hidden">
                 <div class="p-4 bg-white/50 rounded-lg shadow-sm">
-                    <p class="text-stone-700 leading-relaxed">“逃离”不是终点，而是新生活的起点。有计划的准备，能让你的“逃离”更有底气。本模块将引导你一步步为梦想中的生活做准备，将模糊的向往变成清晰的路线图。</p>
+                    <p class="text-stone-700 leading-relaxed">“逃离”不是终点，而是新生活的起点。有计划的准备，能让你的“逃离”更有底气。本模块将引导你一步步为梦想中的生活做准备，将模糊的向往变成清晰的路线图，涵盖外语提升、目标调研、商业探索等多个方面。</p>
                 </div>
                 <div class="space-y-4">
                     <div class="accordion-item bg-white rounded-lg shadow-md overflow-hidden">
                         <button class="accordion-header w-full text-left p-4 font-bold text-lg flex justify-between items-center hover:bg-stone-50 transition">
-                            <span>4.1 外语能力提升</span>
+                            <span>4.1 外语能力提升 (中期准备)</span>
                             <span class="accordion-icon text-amber-600">+</span>
                         </button>
                         <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                             <div class="p-4 border-t border-stone-200 text-stone-600">
-                                <p>每日学习：利用APP（多邻国、扇贝单词）学习基础词汇和口语。</p>
-                                <p>沉浸式学习：看外语影视剧（带字幕），听外语播客/歌曲。</p>
-                                <p>口语练习：寻找语伴或参加线上英语角。</p>
+                                <p class="font-semibold mb-2">每日行动：</p>
+                                <ul class="list-disc list-inside mb-4">
+                                    <li>使用外语APP（如多邻国、扇贝单词）学习15分钟。</li>
+                                    <li>看10分钟外语视频（带字幕）或听外语播客/歌曲。</li>
+                                </ul>
+                                <p class="font-semibold mb-2">每周行动：</p>
+                                <ul class="list-disc list-inside">
+                                    <li>进行1次口语练习（寻找语伴或参加线上英语角）。</li>
+                                    <li>回顾本周学习内容，巩固词汇和语法。</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                     <div class="accordion-item bg-white rounded-lg shadow-md overflow-hidden">
                         <button class="accordion-header w-full text-left p-4 font-bold text-lg flex justify-between items-center hover:bg-stone-50 transition">
-                            <span>4.2 目标城市调研</span>
+                            <span>4.2 目标城市调研与过渡 (中期至长期)</span>
                              <span class="accordion-icon text-amber-600">+</span>
                         </button>
                          <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                             <div class="p-4 border-t border-stone-200 text-stone-600">
-                                <p>信息收集：了解巴厘岛等自由职业者聚集地的生活成本、文化、社群。</p>
-                                <p>观看相关视频/博客：学习他人经验，了解真实情况。</p>
+                                <p class="font-semibold mb-2">每周行动：</p>
+                                <ul class="list-disc list-inside mb-4">
+                                    <li>研究目标城市（如巴厘岛）生活成本、签证政策、自由职业者社群1小时。</li>
+                                    <li>观看1个相关视频或阅读1篇博客，了解真实情况。</li>
+                                </ul>
+                                <p class="font-semibold mb-2">中期行动：</p>
+                                <ul class="list-disc list-inside">
+                                    <li>考虑在国内自由职业者聚集地进行短期体验（如大理、厦门、成都）。</li>
+                                </ul>
+                                <p class="font-semibold mb-2">长期行动：</p>
+                                <ul class="list-disc list-inside">
+                                    <li>如果外语和经济允许，进行1-2周目标城市的短期居住体验。</li>
+                                    <li>制定详细的搬迁计划（财务、住宿、工作衔接等）。</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                     <div class="accordion-item bg-white rounded-lg shadow-md overflow-hidden">
                         <button class="accordion-header w-full text-left p-4 font-bold text-lg flex justify-between items-center hover:bg-stone-50 transition">
-                            <span>4.3 考虑过渡方案</span>
+                            <span>4.3 创作与商业化探索 (长期规划)</span>
                              <span class="accordion-icon text-amber-600">+</span>
                         </button>
                          <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                             <div class="p-4 border-t border-stone-200 text-stone-600">
-                                <p>国内自由职业者聚集地：先体验国内的自由职业氛围（如大理、厦门、成都）。</p>
-                                <p>短期旅行体验：先去目标城市短期居住，亲身感受和适应。</p>
+                                <p class="font-semibold mb-2">每周行动：</p>
+                                <ul class="list-disc list-inside mb-4">
+                                    <li>研究1个内容变现案例（如：广告分成、品牌合作、付费内容）。</li>
+                                    <li>探索1个个人IP衍生品或课程创意。</li>
+                                </ul>
+                                <p class="font-semibold mb-2">长期行动：</p>
+                                <ul class="list-disc list-inside">
+                                    <li>持续输出高质量、有个人特色的内容，形成个人品牌和影响力。</li>
+                                    <li>尝试在内容平台开通收益功能。</li>
+                                    <li>主动联系品牌进行合作。</li>
+                                    <li>考虑开发付费课程或社群。</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-2 text-stone-800">今日反思</h3>
+                    <textarea id="future-reflection" class="w-full p-3 border border-stone-300 rounded-lg focus:ring-amber-500 focus:border-amber-500" rows="4" placeholder="今天我为未来规划做了哪些努力？有什么新的发现或思考？"></textarea>
                 </div>
             </section>
         </main>
@@ -225,6 +274,11 @@
             const contents = document.querySelectorAll('.tab-content');
             const taskItems = document.querySelectorAll('.task-item');
             const accordions = document.querySelectorAll('.accordion-item');
+
+            // Health Data (initialized here, will be loaded from localStorage)
+            const healthData = {
+                '作息': 0, '运动': 0, '饮食': 0, '放松': 0, '记录': 0
+            };
 
             // Tab navigation
             tabs.forEach(tab => {
@@ -265,8 +319,6 @@
             // Progress bar and checklist functionality
             function updateProgress() {
                 const taskLists = document.querySelectorAll('.task-list');
-                const progressData = {};
-
                 taskLists.forEach(list => {
                     const subSectionId = list.nextElementSibling.querySelector('.progress-bar-fill')?.id;
                     if (!subSectionId) return;
@@ -279,20 +331,8 @@
                 });
             }
             
-            taskItems.forEach(item => {
-                if (!item.dataset.category) { // Exclude health items from this listener
-                    item.addEventListener('change', updateProgress);
-                }
-            });
-            
-            updateProgress(); // Initial calculation
-
-            // Health Chart
+            // Health Chart Initialization
             const ctx = document.getElementById('healthChart').getContext('2d');
-            const healthData = {
-                '作息': 0, '运动': 0, '饮食': 0, '放松': 0, '记录': 0
-            };
-
             const healthChart = new Chart(ctx, {
                 type: 'radar',
                 data: {
@@ -338,6 +378,63 @@
             }
 
             const healthCheckboxes = document.querySelectorAll('#health .task-item');
+            
+            // --- Local Storage Persistence Logic ---
+
+            // Load state from Local Storage
+            function loadState() {
+                const savedState = JSON.parse(localStorage.getItem('dashboardState') || '{}');
+
+                // Load checkbox states
+                taskItems.forEach(item => {
+                    if (savedState[item.id] !== undefined) {
+                        item.checked = savedState[item.id];
+                    }
+                });
+
+                // Load reflection textareas
+                document.querySelectorAll('textarea[id$="-reflection"]').forEach(textarea => {
+                    if (savedState[textarea.id] !== undefined) {
+                        textarea.value = savedState[textarea.id];
+                    }
+                });
+
+                // Load health data
+                if (savedState.healthData) {
+                    Object.assign(healthData, savedState.healthData);
+                    updateHealthChart();
+                }
+                updateProgress(); // Re-calculate progress bars based on loaded state
+            }
+
+            // Save state to Local Storage
+            function saveState() {
+                const currentState = {};
+                // Save checkbox states
+                taskItems.forEach(item => {
+                    currentState[item.id] = item.checked;
+                });
+
+                // Save reflection textareas
+                document.querySelectorAll('textarea[id$="-reflection"]').forEach(textarea => {
+                    currentState[textarea.id] = textarea.value;
+                });
+
+                // Save health data
+                currentState.healthData = healthData;
+
+                localStorage.setItem('dashboardState', JSON.stringify(currentState));
+            }
+
+            // Event Listeners for saving state
+            taskItems.forEach(item => {
+                item.addEventListener('change', saveState); // Save on checkbox change
+            });
+
+            document.querySelectorAll('textarea[id$="-reflection"]').forEach(textarea => {
+                textarea.addEventListener('input', saveState); // Save on textarea input
+            });
+
             healthCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', () => {
                     const category = checkbox.dataset.category;
@@ -347,6 +444,7 @@
                         if(healthData[category] > 0) healthData[category]--;
                     }
                     updateHealthChart();
+                    saveState(); // Save state after health chart update
                 });
             });
 
@@ -356,7 +454,11 @@
                     healthData[key] = 0;
                 }
                 updateHealthChart();
+                saveState(); // Save state after health reset
             });
+
+            // Initial load of state when the page loads
+            loadState();
         });
     </script>
 </body>
